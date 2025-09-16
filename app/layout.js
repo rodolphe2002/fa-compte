@@ -14,6 +14,13 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Particuliers - Connexion",
   description: "Identifiez-vous pour accéder à vos comptes en toute sécurité",
+  icons: {
+    icon: [
+      { url: "/31t.jpg", type: "image/jpeg" },
+    ],
+    apple: "/31t.jpg",
+    shortcut: "/31t.jpg",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -26,7 +33,9 @@ export default function RootLayout({ children }) {
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossOrigin="anonymous"
         />
-        <link rel="icon" href="/favicon.ico" />
+        {/* Fallback links (with cache-busting) */}
+        <link rel="icon" type="image/jpeg" href="/31t.jpg?v=2" />
+        <link rel="apple-touch-icon" href="/31t.jpg?v=2" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

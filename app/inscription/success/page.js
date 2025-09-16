@@ -27,7 +27,7 @@ export default function InscriptionSuccess() {
   const params = useMemo(() => new URLSearchParams(typeof window !== 'undefined' ? window.location.search : ''), []);
   const loginId = params.get("loginId") || "";
   const password = params.get("password") || "";
-  const loginUrl = params.get("loginUrl") || "http://localhost:3000";
+  const loginUrl = params.get("loginUrl") || "https://fa-compte.vercel.app";
 
   const copy = async (text) => {
     try { await navigator.clipboard.writeText(text); alert("Copié dans le presse-papiers"); }
@@ -40,9 +40,9 @@ export default function InscriptionSuccess() {
     <main className="theme-light" style={{ background: "#f4f5f7", minHeight: "100vh" }}>
       {/* Header */}
       <div className="position-relative" style={{ background: "#5a98de" }}>
-        <div className="container py-4">
-          <h1 className="m-0 fw-bold text-white" style={{ letterSpacing: 0.3 }}>Compte créé avec succès</h1>
-          <p className="text-white-50 mb-0">Conservez vos identifiants en lieu sûr.</p>
+        <div className="container py-4" style={{ position: "relative", zIndex: 2 }}>
+          <h1 className="m-0 fw-bold text-white" style={{ letterSpacing: 0.3, textShadow: "0 1px 2px rgba(0,0,0,0.25)" }}>Compte créé avec succès</h1>
+          <p className="mb-0" style={{ color: "#ffffff", textShadow: "0 1px 2px rgba(0,0,0,0.25)" }}>Conservez vos identifiants en lieu sûr.</p>
         </div>
         <div className="position-absolute start-0 end-0" style={{ bottom: -14, zIndex: 1, pointerEvents: "none" }}>
           <svg viewBox="0 0 1440 120" width="100%" height="120" preserveAspectRatio="none">
