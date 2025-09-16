@@ -371,7 +371,7 @@ export default function Compte() {
           <div className="d-flex align-items-center px-3 py-3" style={{ position: "relative", zIndex: 2 }}>
             <div className="me-auto">
               <p className="mb-1" style={{ color: "#e8f1ff", opacity: 0.9, fontSize: 12 }}>
-                Lundi 15 Septembre
+                {new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
               </p>
               <h1 className="m-0 fw-bold" style={{ color: "#ffffff", letterSpacing: 0.2 }}>
                 {user ? `${user.nom} ${user.prenom}` : 'SICILIANO VITO PIETRO'}

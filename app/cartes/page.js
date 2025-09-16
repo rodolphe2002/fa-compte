@@ -121,7 +121,7 @@ export default function Cartes() {
         <div className="d-flex align-items-center px-3 py-3" style={{ position: "relative", zIndex: 2 }}>
           <div className="me-auto">
             <p className="mb-1" style={{ color: "#e8f1ff", opacity: 0.9, fontSize: 12 }}>
-              Lundi 15 Septembre
+              {new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
             </p>
             <h1 className="m-0 fw-bold" style={{ color: "#ffffff", letterSpacing: 0.2 }}>
               {user ? `${user.nom} ${user.prenom}` : 'SICILIANO VITO PIETRO'}
@@ -129,15 +129,21 @@ export default function Cartes() {
           </div>
 
           <div className="ms-auto d-flex align-items-center gap-2">
-            <a
-              href="#"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#menu-notifications"
-              className="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow"
-              style={{ width: 40, height: 40 }}
-            >
-              <i className="bi bi-bell-fill text-danger" />
-            </a>
+            <div style={{ position: 'relative' }}>
+              <a
+                href="#"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#menu-notifications"
+                className="bg-white rounded-circle d-inline-flex align-items-center justify-content-center shadow"
+                style={{ width: 40, height: 40, position: 'relative' }}
+              >
+                <i className="bi bi-bell-fill text-danger" />
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style={{ fontSize: '10px' }}>
+                  1
+                  <span className="visually-hidden">nouvelle notification</span>
+                </span>
+              </a>
+            </div>
             <div className="dropdown">
               <a href="#" data-bs-toggle="dropdown" className="rounded-circle shadow">
                 <Image src="/25s.jpg" width={45} height={45} className="rounded-circle" alt="img" />
