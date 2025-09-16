@@ -424,7 +424,7 @@ export default function Compte() {
         </div>
 
         {/* Blue background extender to reach below first card and helper text */}
-        <div style={{ background: "#5a98de", height: isWalletClosed ? 250 : 220, marginBottom: isWalletClosed ? -230 : -200, position: "relative", zIndex: 0 }} />
+        <div style={{ background: "#5a98de", height: isWalletClosed ? 230 : 210, marginBottom: isWalletClosed ? -210 : -190, position: "relative", zIndex: 0 }} />
 
         {/* Horizontal slider: Mon compte & Monnaie électronique */}
         <div className="px-3" style={{ marginTop: -20 }}>
@@ -450,7 +450,7 @@ export default function Compte() {
                     <span className="text-white" style={{ fontSize: 12, fontWeight: 600 }}>Mon compte</span>
                   </div>
                   <div className="position-absolute start-0 p-3" style={{ top: 36 }}>
-                    <div className="bg-white rounded-3 p-2" style={{ width: 170 }}>
+                    <div className="bg-white rounded-3 p-3" style={{ width: 220 }}>
                       <div className="text-dark" style={{ fontSize: 12, fontWeight: 600 }}>Mon solde:</div>
                       <div className="text-dark" style={{ fontSize: 22, fontWeight: 700 }}>
                         {user ? formatCurrency(user.soldeCompte, user.deviseCompte) : '€1.500.000,00'}
@@ -486,7 +486,7 @@ export default function Compte() {
                     <span className="text-white" style={{ fontSize: 12, fontWeight: 600 }}>Monnaie électronique</span>
                   </div>
                   <div className="position-absolute start-0 p-3" style={{ top: 36 }}>
-                    <div className="bg-white rounded-3 p-2" style={{ width: 140 }}>
+                    <div className="bg-white rounded-3 p-3" style={{ width: 220 }}>
                       <div className="text-dark" style={{ fontSize: 12, fontWeight: 600 }}>Mon solde:</div>
                       <div className="text-dark" style={{ fontSize: 22, fontWeight: 700 }}>
                         {user ? formatCurrency(user.soldeElec, user.deviseCompte) : '€04,31'}
