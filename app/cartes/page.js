@@ -204,7 +204,7 @@ export default function Cartes() {
             <span className="text-white" style={{ fontSize: 12, fontWeight: 600 }}>Mon compte</span>
           </div>
           <div className="position-absolute start-0 p-3" style={{ top: 36 }}>
-            <div className="bg-white rounded-3 p-2" style={{ width: 170 }}>
+            <div className="bg-white rounded-3 p-3" style={{ width: 220 }}>
               <div className="text-dark" style={{ fontSize: 12, fontWeight: 600 }}>Mon solde:</div>
               <div className="text-dark" style={{ fontSize: 22, fontWeight: 700 }}>
                 {user ? formatCurrency(user.soldeCompte, user.deviseCompte) : '€1.500.000,00'}
