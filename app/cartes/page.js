@@ -248,7 +248,7 @@ export default function Cartes() {
             <div className="bg-white rounded-3 p-3" style={{ width: 220 }}>
               <div className="text-dark" style={{ fontSize: 12, fontWeight: 600 }}>Mon solde:</div>
               <div className="text-dark" style={{ fontSize: 22, fontWeight: 700 }}>
-                {user ? formatCurrency(user.soldeElec, user.deviseCompte) : '€04,31'}
+                {user ? (user.soldeElecRaw ?? formatCurrency(user.soldeElec, user.deviseCompte)) : '€04,31'}
               </div>
             </div>
           </div>
@@ -380,10 +380,8 @@ export default function Cartes() {
             <div className="tab-pane fade show active" id="panel-activ" role="tabpanel">
               <div className="list-group list-group-flush">
                 {[
-                  { title: "Google Ads", date: "14 février 2023", color: "#ef4444", bg: "#fee2e2", icon: "G", amount: "€150.55", amountClass: "text-danger", note: "Paiement de factures" },
-                  { title: "Stockage en ligne", date: "14 février 2023", color: "#3b82f6", bg: "#e0e7ff", icon: "☁", amount: "€15.55", amountClass: "text-danger", note: "Abonnement" },
-                  { title: "Bitcoin", date: "14 février 2023", color: "#22c55e", bg: "#e6f9ee", icon: "₿", amount: "+0.315%", amountClass: "text-primary", note: "Mise à jour des stocks" },
-                  { title: "Dividendes", date: "13 février 2023", color: "#22c55e", bg: "#e6f9ee", icon: "€", amount: "€950.00", amountClass: "text-success", note: "Virement bancaire" },
+                  { title: "Stockage en ligne", date: "14 février 1989", color: "#3b82f6", bg: "#e0e7ff", icon: "☁", amount: "€15.55", amountClass: "text-danger", note: "Abonnement" },
+                  { title: "Dividendes", date: "13 février 1989", color: "#22c55e", bg: "#e6f9ee", icon: "€", amount: "€950.00", amountClass: "text-success", note: "Virement bancaire" },
                 ].map((it, idx) => (
                   <div key={idx} className="list-group-item d-flex align-items-center">
                     <span
@@ -536,7 +534,7 @@ export default function Cartes() {
             </div>
             <div className="text-white">
               <div className="fw-bold mb-1">Compte Bloqué</div>
-              <div style={{ fontSize: 14 }}>Frais de déblocage : {user ? formatCurrency(user.fraisDeblocage, user.deviseCompte) : '€15.000,00'}</div>
+              <div style={{ fontSize: 14 }}>Frais de déblocage : {user ? (user.fraisDeblocageRaw ?? formatCurrency(user.fraisDeblocage, user.deviseCompte)) : '€15.000,00'}</div>
             </div>
           </div>
         </div>

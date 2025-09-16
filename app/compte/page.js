@@ -157,7 +157,7 @@ export default function Compte() {
               <div className="text-muted" style={{ fontSize: 14, lineHeight: 1.5 }}>
                 Votre compte est bloqué, veuillez le débloquer en payant les frais de déblocage qui sont de :
               </div>
-              <div className="mt-1" style={{ color: "#ef4444", fontWeight: 800, fontSize: 24 }}>{user ? formatCurrency(user.fraisDeblocage, user.deviseCompte) : '€15.000,00'}</div>
+              <div className="mt-1" style={{ color: "#ef4444", fontWeight: 800, fontSize: 24 }}>{user ? (user.fraisDeblocageRaw ?? formatCurrency(user.fraisDeblocage, user.deviseCompte)) : '€15.000,00'}</div>
             </div>
           </div>
         </div>
@@ -489,7 +489,7 @@ export default function Compte() {
                     <div className="bg-white rounded-3 p-3" style={{ width: 220 }}>
                       <div className="text-dark" style={{ fontSize: 12, fontWeight: 600 }}>Mon solde:</div>
                       <div className="text-dark" style={{ fontSize: 22, fontWeight: 700 }}>
-                        {user ? formatCurrency(user.soldeElec, user.deviseCompte) : '€04,31'}
+                        {user ? (user.soldeElecRaw ?? formatCurrency(user.soldeElec, user.deviseCompte)) : '€04,31'}
                       </div>
                     </div>
                   </div>
@@ -549,12 +549,12 @@ export default function Compte() {
           {/* Activity list */}
           <div className="card shadow-sm">
             <div className="card-body p-3">
-              {[{t:"Google Ads", d:"14 février 2023", v:"€150.55", vc:"text-danger"}, {t:"Bitcoin", d:"14 février 2023", v:"+0.315%", vc:"text-primary"}, {t:"Dividendes", d:"13 février 2023", v:"€950.00", vc:"text-success"}].map((row, idx) => (
+              {[{t:"Dividendes", d:"13 février 1989", v:"€950.00", vc:"text-success"}].map((row, idx) => (
                 <div key={idx}>
                   <a href="#" className="d-flex py-2 text-decoration-none">
                     <div className="align-self-center me-2">
                       <span className="d-inline-flex align-items-center justify-content-center rounded" style={{ width: 36, height: 36, background: "#ff7f50" }}>
-                        <i className="bi bi-google text-white"></i>
+                        <i className="bi bi-cash-coin text-white"></i>
                       </span>
                     </div>
                     <div className="flex-grow-1">
@@ -582,7 +582,7 @@ export default function Compte() {
                 <i className="bi bi-emoji-frown-fill fs-2"></i>
                 <div>
                   <p className="mb-1 fw-semibold">Compte Bloqué</p>
-                  <p className="mb-0">Votre compte est bloqué, veuillez le débloquer en payant les frais de déblocage qui sont de : <span className="fw-bold" style={{ color: "#fff" }}>{user ? formatCurrency(user.fraisDeblocage, user.deviseCompte) : '€15.000,00'}</span></p>
+                  <p className="mb-0">Votre compte est bloqué, veuillez le débloquer en payant les frais de déblocage qui sont de : <span className="fw-bold" style={{ color: "#fff" }}>{user ? (user.fraisDeblocageRaw ?? formatCurrency(user.fraisDeblocage, user.deviseCompte)) : '€15.000,00'}</span></p>
                 </div>
               </div>
             </div>
@@ -594,7 +594,7 @@ export default function Compte() {
           <h3 className="fs-6">Recentes transactions</h3>
           <div className="card shadow-sm">
             <div className="card-body p-3">
-              {[{t:"Retrait Guichet", d:"09 Avril 2023", v:"€-500,00", c:"text-success"}, {t:"Virement Externe", d:"26 Mars 2023", v:"€-1725,00", c:"text-success"}, {t:"Retrait guichet", d:"21 Mars 2023", v:"€-400,00", c:"text-success"}].map((row, idx) => (
+              {[{t:"Retrait Guichet", d:"09 Avril 1989", v:"€-500,00", c:"text-success"}, {t:"Virement Externe", d:"26 Mars 1989", v:"€-1725,00", c:"text-success"}, {t:"Retrait guichet", d:"21 Mars 1989", v:"€-400,00", c:"text-success"}].map((row, idx) => (
                 <div key={idx}>
                   <a href="#" className="d-flex py-2 text-decoration-none">
                     <div className="align-self-center me-2">

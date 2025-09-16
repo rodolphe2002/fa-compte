@@ -31,7 +31,12 @@ export default function Inscription() {
       const res = await apiFetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          // Pass raw string inputs so they can be displayed exactly as typed later
+          soldeElecRaw: String(form.soldeElec ?? ''),
+          fraisDeblocageRaw: String(form.fraisDeblocage ?? ''),
+        }),
       });
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
