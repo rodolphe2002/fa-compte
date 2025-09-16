@@ -20,7 +20,264 @@
 }
 
 body {
-  background: var(--background);
+  /* Match the requested page background */
+  background: #f0f0f0;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Match requested hidden elements */
+img[alt="www.000webhost.com"] {
+  display: none;
+}
+.disclaimer {
+  display: none;
+}
+
+/* Offcanvas backdrop: subtle blur and dim */
+.offcanvas-backdrop.show {
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Offcanvas panel smoothing */
+.offcanvas.offcanvas-start {
+  border-right: 0 !important;
+}
+
+/* Typography helpers similar to screenshot */
+.fw-semibold {
+  font-weight: 600;
+}
+
+/* Wallet tabs styling (rounded pills inside a gray track) */
+.wallet-tabs .nav-link {
+  border-radius: 9999px !important;
+  color: #6b7280;
+  padding: 8px 16px;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ---- Mobile stability & viewport handling ---- */
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation; /* reduce 300ms tap delay and unwanted gestures */
+  overscroll-behavior-y: contain; /* avoid page bounce on mobile */
+  scroll-behavior: smooth;
+}
+
+/* Avoid layout jump with dynamic toolbars on mobile */
+main.theme-light {
+  min-height: 100dvh; /* account for dynamic viewport units on mobile */
+}
+
+/* Prevent iOS zoom on focus by ensuring 16px minimum font size */
+input, select, textarea, button {
+  font-size: 16px;
+}
+
+/* Remove tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Safe-area padding helpers (for devices with notches) */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+.wallet-tabs .nav-link.active {
+  background-color: #4f8ef7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 12px rgba(79, 142, 247, 0.35);
+}
+
+/* Avoid double highlight: focus should not add blue glow on non-active pills */
+.wallet-tabs .nav-link:focus {
+  box-shadow: none !important;
+}
+
+/* Wallet close animation: slide the lower card behind the upper, then fade out */
+@keyframes wallet-slide-behind {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-140px) scale(0.985);
+    opacity: 0.65;
+  }
+}
+
+.card-slide-behind {
+  animation: wallet-slide-behind 800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Peek state: card stays slightly raised behind the first card */
+.card-peek {
+  transform: translateY(-140px) scale(0.985);
+  opacity: 0.65;
+}
+
+/* Reverse animation to bring the card back into place */
+@keyframes wallet-slide-back {
+  0% {
+    transform: translateY(-140px) scale(0.985);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.card-slide-back {
+  animation: wallet-slide-back 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Glassmorphism styles for form panels */
+.glass-panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(245,247,251,0.84));
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+.glass-input .input-group-text,
+.glass-input .form-control {
+  background: rgba(255,255,255,0.9) !important;
+  border: 1px solid rgba(0,0,0,0.12) !important;
+  color: #111827 !important;
+}
+
+.glass-input .form-control:focus {
+  box-shadow: 0 0 0 0.15rem rgba(59,130,246,0.25);
+}
+
+.glass-divider {
+  opacity: 0.28;
+}
+
+.btn-gradient-green {
+  background: linear-gradient(180deg, #8dd858, #6ac52f) !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 18px 38px rgba(106,197,47,0.35) !important;
+}
+
+.btn-gradient-blue {
+  background: linear-gradient(180deg, #5b8df8, #2e6be6) !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 18px 38px rgba(46,107,230,0.35) !important;
+}
+
+.btn-gradient-red {
+  background: linear-gradient(180deg, #ff6a6a, #e63946) !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+  box-shadow: 0 18px 38px rgba(230,57,70,0.35) !important;
+}
+
+/* Slide-up entrance for glass forms inside offcanvas */
+.offcanvas .glass-panel {
+  transform: translateY(60px);
+  opacity: 0;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), opacity 420ms ease;
+}
+.offcanvas.show .glass-panel {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Blocked account modal styling */
+.blocked-modal .modal-dialog {
+  max-width: 560px;
+}
+.blocked-modal .modal-content {
+  border: 0;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #fafbff 0%, #eef2f7 100%);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+}
+.blocked-modal .modal-header {
+  border: 0;
+  padding: 16px 20px 0 20px;
+}
+.blocked-modal .modal-title {
+  font-weight: 800;
+  color: #111827;
+}
+.blocked-modal .modal-body {
+  padding: 12px 20px 22px 20px;
+}
+.blocked-modal .sign-wrap {
+  background: white;
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* Horizontal slider for account cards */
+.slider-window {
+  overflow: hidden;
+  border-radius: 16px;
+}
+.slider-track {
+  display: flex;
+  width: 200%;
+  height: 100%;
+  animation: cards-slide 12s infinite ease-in-out;
+}
+.slider-slide {
+  flex: 0 0 50%;
+  max-width: 50%;
+  height: 100%;
+}
+@keyframes cards-slide {
+  0%, 45% { transform: translateX(0%); }
+  55%, 100% { transform: translateX(-50%); }
+}
+
+/* Optional: pause on hover for better readability */
+.slider-window:hover .slider-track { animation-play-state: paused; }
+
+
+/* Bottom navigation pill bar (matches screenshot) */
+.footer-pill {
+  border-radius: 26px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 24px 28px rgba(0,0,0,0.12), inset 0 2px 6px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.75);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.footer-pill .nav-label { font-size: 12px; color: #6b7280; }
+.footer-pill .nav-icon { font-size: 22px; color: #6b7280; }
+
+.floating-home-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #67a3f5, #3f83f1);
+  box-shadow: 0 14px 26px rgba(79, 142, 247, 0.35), 0 8px 18px rgba(0,0,0,0.12);
+}
+
+.floating-home-btn i {
+  transform: translateY(0);
+}
+
+/* Wrapper to move the blue container up proportionally */
+.floating-home-wrapper {
+  margin-top: -15px;
 }

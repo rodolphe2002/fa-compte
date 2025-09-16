@@ -1,103 +1,157 @@
-import Image from "next/image";
+"use client";
+import { useEffect, useState } from "react";
+import { apiFetch } from "./lib/api";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [loginId, setLoginId] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    // Dynamically load Bootstrap JS via CDN on the client only
+    const script = document.createElement("script");
+    script.src =
+      "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js";
+    script.integrity =
+      "sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM";
+    script.crossOrigin = "anonymous";
+    document.body.appendChild(script);
+    return () => {
+      if (script.parentNode) script.parentNode.removeChild(script);
+    };
+  }, []);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+    try {
+      const res = await apiFetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ loginId, password }),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || `Erreur ${res.status}`);
+      }
+      const data = await res.json();
+      try {
+        sessionStorage.setItem('user', JSON.stringify(data.user));
+      } catch {}
+      window.location.href = "/compte";
+    } catch (err) {
+      setError(err.message);
+      alert("Échec de la connexion: " + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  return (
+    <main>
+      {/* Top navigation image */}
+      <img
+        src="/nav.png"
+        alt="Navigation"
+        style={{ width: "100%", display: "block", marginBottom: 0 }}
+      />
+
+      {/* Carousel */}
+      <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+        <div className="carousel-inner" style={{ paddingTop: 10, paddingBottom: 10 }}>
+          <div className="carousel-item active">
+            <img
+              src="/1.jpg"
+              alt="Slide 1"
+              style={{ display: "block", width: "100%", maxWidth: 500, margin: "0 auto" }}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </div>
+          <div className="carousel-item">
+            <img
+              src="/2.jpg"
+              alt="Slide 2"
+              style={{ display: "block", width: "100%", maxWidth: 500, margin: "0 auto" }}
+            />
+          </div>
+          <div className="carousel-item">
+            <img
+              src="/3.jpg"
+              alt="Slide 3"
+              style={{ display: "block", width: "100%", maxWidth: 500, margin: "0 auto" }}
+            />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      {/* Content container */}
+      <div className="container" style={{ paddingTop: 5, backgroundColor: "white" }}>
+        <div className="row" style={{ padding: 15 }}>
+          <div className="col-12" style={{ textAlign: "left" }}>
+            <h2>
+              <strong>Connexion</strong>
+              <br />
+              <br />
+              Identifiez-vous pour accéder à vos comptes en toute sécurité
+            </h2>
+          </div>
+          <div className="col-sm-6 offset-sm-3">
+            <form onSubmit={onSubmit}>
+              <div className="mb-3" style={{ marginTop: 15 }}>
+                <label htmlFor="username" className="form-label" style={{ color: "black" }}>
+                  Saisir votre identifiant
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="username"
+                  value={loginId}
+                  onChange={(e) => setLoginId(e.target.value)}
+                  style={{ height: 47 }}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="mdp" className="form-label" style={{ color: "black" }}>
+                  Mot de passe
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="mdp"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  style={{ height: 47 }}
+                  required
+                />
+              </div>
+              {error && <div className="alert alert-danger py-2" role="alert">{error}</div>}
+              <div className="mb-3 text-center">
+                <button type="submit" name="connect" className="btn form-control" style={{ color: "white", height: 47, backgroundColor: "#008154" }} disabled={loading}>
+                  {loading ? "Connexion..." : "Valider"}
+                </button>
+              </div>
+              <div className="text-center mt-2" style={{ fontSize: 14 }}>
+                Si vous n’avez pas de compte, veuillez
+                {" "}
+                <a href="/inscription" className="link-primary">cliquer ici</a>
+                {" "}
+                pour créer votre compte.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer image */}
+      <img src="/f.png" alt="Footer" style={{ width: "100%", display: "block", marginTop: 50 }} />
+    </main>
   );
 }

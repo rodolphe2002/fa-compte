@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+backend/.gitignore
+backend
+backend/src/models/User.js
+backend/src/routes/auth.js
+backend/.env
