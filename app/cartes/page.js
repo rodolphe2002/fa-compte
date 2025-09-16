@@ -501,11 +501,11 @@ export default function Cartes() {
             Liens utiles
           </div>
           <div className="p-2">
-            <a href="#" className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
+            <Link href="/profil" className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
               <i className="bi bi-person-circle" style={{ color: "#9ca3af", fontSize: 18 }}></i>
               <span className="flex-grow-1 text-dark">Compte</span>
               <i className="bi bi-chevron-right" style={{ color: "#9ca3af" }}></i>
-            </a>
+            </Link>
             <Link href="/" onClick={logout} className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
               <i className="bi bi-bar-chart" style={{ color: "#9ca3af", fontSize: 18 }}></i>
               <span className="flex-grow-1 text-dark">Se déconnecter</span>

@@ -19,6 +19,14 @@ export default function Profil() {
     bs.crossOrigin = "anonymous";
     document.body.appendChild(bs);
 
+    // Defensive: clear any leftover scroll locks/backdrops from previous pages
+    try {
+      document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
+      document.querySelectorAll('.modal-backdrop, .offcanvas-backdrop').forEach((el) => el.remove());
+      document.querySelectorAll('.modal.show, .offcanvas.show').forEach((el) => el.classList.remove('show'));
+    } catch {}
+
     // Ensure Bootstrap Icons are available (inject link once)
     const existingIcons = document.querySelector('link[href*="bootstrap-icons"]');
     if (!existingIcons) {
@@ -46,7 +54,7 @@ export default function Profil() {
     };
   }, []);
   return (
-    <main className="theme-light" style={{ background: "#f4f5f7", paddingBottom: 120 }}>
+    <main className="theme-light" style={{ background: "#f4f5f7", paddingBottom: 120, overflowY: "auto" }}>
       {/* Global loader overlay */}
       {loading && (
         <div className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style={{ background: "rgba(0,0,0,0.45)", backdropFilter: "blur(4px)", zIndex: 2000 }}>
@@ -131,7 +139,9 @@ export default function Profil() {
                 <div className="nav-label">Cartes</div>
               </Link>
               {/* Center: Home label (under floating button) */}
-              <div className="flex-fill"><div style={{ fontSize: 13, color: "#374151" }}>Home</div></div>
+              <div className="flex-fill">
+                <Link href="/compte" className="text-decoration-none" style={{ fontSize: 13, color: "#374151" }}>Home</Link>
+              </div>
               {/* Right: Plus */}
               <a
                 href="#"
@@ -146,9 +156,9 @@ export default function Profil() {
           </div>
 
           {/* Floating Home button */}
-          <div className="position-absolute start-50 translate-middle-x d-flex align-items-center justify-content-center floating-home-btn floating-home-wrapper" style={{ top: 0, transform: "translate(-50%, -58%)" }}>
+          <Link href="/compte" aria-label="Aller à Compte" className="position-absolute start-50 translate-middle-x d-flex align-items-center justify-content-center floating-home-btn floating-home-wrapper" style={{ top: 0, transform: "translate(-50%, -58%)" }}>
             <i className="bi bi-house-fill text-white" style={{ fontSize: 24 }}></i>
-          </div>
+          </Link>
         </div>
       </div>
 

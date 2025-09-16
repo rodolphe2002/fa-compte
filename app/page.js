@@ -151,13 +151,6 @@ export default function Home() {
                   {loading ? "Connexion..." : "Valider"}
                 </button>
               </div>
-              <div className="text-center mt-2" style={{ fontSize: 14 }}>
-                Si vous n’avez pas de compte, veuillez
-                {" "}
-                <Link href="/inscription" className="link-primary">cliquer ici</Link>
-                {" "}
-                pour créer votre compte.
-              </div>
             </form>
           </div>
         </div>
