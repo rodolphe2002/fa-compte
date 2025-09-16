@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { apiFetch } from "../lib/api";
 
 export default function Inscription() {
@@ -47,19 +48,21 @@ export default function Inscription() {
   return (
     <main>
       {/* Top navigation image (identique Connexion) */}
-      <img src="/nav.png" alt="Navigation" style={{ width: "100%", display: "block", marginBottom: 0 }} />
+      <div style={{ width: "100%", position: "relative" }}>
+        <Image src="/nav.png" alt="Navigation" width={1920} height={200} priority style={{ width: "100%", height: "auto", display: "block", marginBottom: 0 }} />
+      </div>
 
       {/* Carousel (identique Connexion) */}
       <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner" style={{ paddingTop: 10, paddingBottom: 10 }}>
           <div className="carousel-item active">
-            <img src="/1.jpg" alt="Slide 1" style={{ display: "block", width: "100%", maxWidth: 500, margin: "0 auto" }} />
+            <Image src="/1.jpg" alt="Slide 1" width={1000} height={600} style={{ display: "block", width: "100%", height: "auto", maxWidth: 500, margin: "0 auto" }} />
           </div>
           <div className="carousel-item">
-            <img src="/2.jpg" alt="Slide 2" style={{ display: "block", width: "100%", maxWidth: 500, margin: "0 auto" }} />
+            <Image src="/2.jpg" alt="Slide 2" width={1000} height={600} style={{ display: "block", width: "100%", height: "auto", maxWidth: 500, margin: "0 auto" }} />
           </div>
           <div className="carousel-item">
-            <img src="/3.jpg" alt="Slide 3" style={{ display: "block", width: "100%", maxWidth: 500, margin: "0 auto" }} />
+            <Image src="/3.jpg" alt="Slide 3" width={1000} height={600} style={{ display: "block", width: "100%", height: "auto", maxWidth: 500, margin: "0 auto" }} />
           </div>
         </div>
         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -131,7 +134,9 @@ export default function Inscription() {
       </div>
 
       {/* Footer image (identique Connexion) */}
-      <img src="/f.png" alt="Footer" style={{ width: "100%", display: "block", marginTop: 50 }} />
+      <div style={{ width: "100%", position: "relative", marginTop: 50 }}>
+        <Image src="/f.png" alt="Footer" width={1920} height={240} style={{ width: "100%", height: "auto", display: "block" }} />
+      </div>
     </main>
   );
 }

@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Cartes() {
   const [isWalletClosed, setIsWalletClosed] = useState(false);
@@ -138,7 +140,7 @@ export default function Cartes() {
             </a>
             <div className="dropdown">
               <a href="#" data-bs-toggle="dropdown" className="rounded-circle shadow">
-                <img src="/25s.jpg" width="45" height="45" className="rounded-circle" alt="img" />
+                <Image src="/25s.jpg" width={45} height={45} className="rounded-circle" alt="img" />
               </a>
               <ul className="dropdown-menu dropdown-menu-end shadow-lg" style={{ borderRadius: 16, border: "none", minWidth: 200 }}>
                 <li>
@@ -455,7 +457,7 @@ export default function Cartes() {
             </div>
             <div>
               <div className="rounded-circle overflow-hidden shadow" style={{ width: 46, height: 46, boxShadow: "0 10px 18px rgba(69,157,255,0.35), 0 6px 12px rgba(0,0,0,0.18)" }}>
-                <img src="/31t.jpg" alt="profil" width="46" height="46" style={{ objectFit: "cover" }} />
+                <Image src="/31t.jpg" alt="profil" width={46} height={46} style={{ objectFit: "cover" }} />
               </div>
             </div>
           </div>
@@ -504,11 +506,11 @@ export default function Cartes() {
               <span className="flex-grow-1 text-dark">Compte</span>
               <i className="bi bi-chevron-right" style={{ color: "#9ca3af" }}></i>
             </a>
-            <a href="/" onClick={logout} className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
+            <Link href="/" onClick={logout} className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
               <i className="bi bi-bar-chart" style={{ color: "#9ca3af", fontSize: 18 }}></i>
               <span className="flex-grow-1 text-dark">Se déconnecter</span>
               <i className="bi bi-chevron-right" style={{ color: "#9ca3af" }}></i>
-            </a>
+            </Link>
           </div>
 
           <div className="mt-auto p-2" />

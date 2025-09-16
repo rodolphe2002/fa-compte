@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Compte() {
   const [isWalletClosed, setIsWalletClosed] = useState(false);
@@ -206,7 +208,7 @@ export default function Compte() {
             <div className="bg-white rounded-4 shadow-sm overflow-hidden">
               <div className="p-4">
                 {[{
-                  t: "Facture d'eau", a: "€15.35", note: ""
+                  t: "Facture d\u2019eau", a: "€15.35", note: ""
                 },{ t: "Facture de téléphone", a: "€31.41", note: "" },{ t: "Stockage en ligne", a: "€43.21", note: "" },{ t: "Spotify Music", a: "€19.21", note: "Approuvé", ok:true }].map((row, idx) => (
                   <div key={idx} className="d-flex py-3">
                     <div className="flex-grow-1">
@@ -273,7 +275,7 @@ export default function Compte() {
                 <div className="form-check mb-4">
                   <input className="form-check-input" type="checkbox" id="request-terms" defaultChecked />
                   <label className="form-check-label" htmlFor="request-terms">
-                    J'accepte la demande <a href="#" className="text-decoration-none">Terms of Service</a>
+                    J&apos;accepte la demande <a href="#" className="text-decoration-none">Terms of Service</a>
                   </label>
                 </div>
                 {/* Submit */}
@@ -389,33 +391,25 @@ export default function Compte() {
                 </span>
               </a>
               <div className="dropdown">
-                <a href="#" data-bs-toggle="dropdown" className="rounded-circle shadow">
-                  <img src="/31t.jpg" width="45" height="45" className="rounded-circle" alt="profil" />
-                </a>
+                <Link href="#" data-bs-toggle="dropdown" className="rounded-circle shadow">
+                  <Image src="/31t.jpg" width={45} height={45} className="rounded-circle" alt="profil" />
+                </Link>
                 <ul className="dropdown-menu dropdown-menu-end shadow-lg" style={{ borderRadius: 16, border: "none", minWidth: 200 }}>
                   <li>
-                    <a className="dropdown-item d-flex align-items-center py-3" href="#" style={{ gap: 12 }}>
-                      <div className="rounded-3 d-flex align-items-center justify-content-center" style={{ width: 40, height: 40, background: "#22c55e" }}>
-                        <i className="bi bi-wallet2 text-white" style={{ fontSize: 18 }}></i>
-                      </div>
-                      <span className="fw-semibold">Portefeuille</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item d-flex align-items-center py-3" href="/profil" style={{ gap: 12 }}>
+                    <Link className="dropdown-item d-flex align-items-center py-3" href="/profil" style={{ gap: 12 }}>
                       <div className="rounded-3 d-flex align-items-center justify-content-center" style={{ width: 40, height: 40, background: "#f59e0b" }}>
                         <i className="bi bi-person-circle text-white" style={{ fontSize: 18 }}></i>
                       </div>
                       <span className="fw-semibold">Compte</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a className="dropdown-item d-flex align-items-center py-3" href="/" onClick={logout} style={{ gap: 12 }}>
+                    <Link className="dropdown-item d-flex align-items-center py-3" href="/" onClick={logout} style={{ gap: 12 }}>
                       <div className="rounded-3 d-flex align-items-center justify-content-center" style={{ width: 40, height: 40, background: "#ef4444" }}>
                         <i className="bi bi-power text-white" style={{ fontSize: 18 }}></i>
                       </div>
                       <span className="fw-semibold">Se déconnecter</span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -605,7 +599,7 @@ export default function Compte() {
                   <a href="#" className="d-flex py-2 text-decoration-none">
                     <div className="align-self-center me-2">
                       <span className="d-inline-flex align-items-center justify-content-center rounded" style={{ width: 45, height: 45, background: "#fde68a" }}>
-                        <img src="/1.jpg" width="45" height="45" className="rounded" alt="img" />
+                        <Image src="/1.jpg" width={45} height={45} className="rounded" alt="img" />
                       </span>
                     </div>
                     <div className="flex-grow-1">
@@ -653,7 +647,7 @@ export default function Compte() {
             </div>
             <div>
               <div className="rounded-circle overflow-hidden shadow" style={{ width: 46, height: 46, boxShadow: "0 10px 18px rgba(69,157,255,0.35), 0 6px 12px rgba(0,0,0,0.18)" }}>
-                <img src="/31t.jpg" alt="profil" width="46" height="46" style={{ objectFit: "cover" }} />
+                <Image src="/31t.jpg" alt="profil" width={46} height={46} style={{ objectFit: "cover" }} />
               </div>
             </div>
           </div>
@@ -697,11 +691,11 @@ export default function Compte() {
             Liens utiles
           </div>
           <div className="p-2">
-            <a href="/profil" className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
+            <Link href="/profil" className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
               <i className="bi bi-person-circle" style={{ color: "#9ca3af", fontSize: 18 }}></i>
               <span className="flex-grow-1 text-dark">Compte</span>
               <i className="bi bi-chevron-right" style={{ color: "#9ca3af" }}></i>
-            </a>
+            </Link>
             <a href="#" className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
               <i className="bi bi-bar-chart" style={{ color: "#9ca3af", fontSize: 18 }}></i>
               <span className="flex-grow-1 text-dark">Se déconnecter</span>
@@ -747,7 +741,7 @@ export default function Compte() {
               <div className="p-4">
                 {/* Identification */}
                 <div className="mb-3">
-                  <div className="text-uppercase small fw-bold mb-1" style={{ color: "#2563eb", letterSpacing: 0.3 }}>Numéro d'identification</div>
+                  <div className="text-uppercase small fw-bold mb-1" style={{ color: "#2563eb", letterSpacing: 0.3 }}>Numéro d&apos;identification</div>
                   <div className="input-group glass-input">
                     <span className="input-group-text bg-white"><i className="bi bi-credit-card" style={{ color: "#9ca3af" }}></i></span>
                     <input type="text" className="form-control" defaultValue="BNK_1245" />
@@ -768,7 +762,7 @@ export default function Compte() {
                 <div className="form-check mb-4">
                   <input className="form-check-input" type="checkbox" id="transfer-terms" defaultChecked />
                   <label className="form-check-label" htmlFor="transfer-terms">
-                    J'accepte le transfert <a href="#" className="text-decoration-none">Conditions d'utilisation</a>
+                    J&apos;accepte le transfert <a href="#" className="text-decoration-none">Conditions d&apos;utilisation</a>
                   </label>
                 </div>
                 {/* Submit */}

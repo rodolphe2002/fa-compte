@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Profil() {
   const [user, setUser] = useState(null);
@@ -64,7 +66,7 @@ export default function Profil() {
       <div className="position-relative" style={{ marginTop: -80 }}>
         <div className="d-flex flex-column align-items-center">
           <div className="shadow rounded-circle" style={{ boxShadow: "0 26px 40px rgba(0,0,0,0.22)", border: "6px solid #ffffff", width: 112, height: 112, overflow: "hidden" }}>
-            <img src="/31t.jpg" alt="Profil" width={112} height={112} style={{ objectFit: "cover" }} />
+            <Image src="/31t.jpg" alt="Profil" width={112} height={112} style={{ objectFit: "cover" }} />
           </div>
           <div style={{ position: "absolute", top: 0, filter: "blur(22px)", transform: "translateY(32px)", width: 160, height: 38, borderRadius: 40, background: "rgba(0,0,0,0.18)", zIndex: 0 }} />
           <h1 className="mt-3 mb-0 text-center" style={{ color: "#111827", letterSpacing: 0.3, fontSize: 36, fontWeight: 800 }}>
@@ -124,10 +126,10 @@ export default function Profil() {
           <div className="footer-pill" style={{ padding: "18px 24px 22px" }}>
             <div className="d-flex align-items-end justify-content-between text-center">
               {/* Left: Cartes */}
-              <a href="/cartes" className="text-decoration-none flex-fill text-dark">
+              <Link href="/cartes" className="text-decoration-none flex-fill text-dark">
                 <div className="mb-1"><i className="bi bi-wallet2 nav-icon"></i></div>
                 <div className="nav-label">Cartes</div>
-              </a>
+              </Link>
               {/* Center: Home label (under floating button) */}
               <div className="flex-fill"><div style={{ fontSize: 13, color: "#374151" }}>Home</div></div>
               {/* Right: Plus */}
@@ -172,7 +174,7 @@ export default function Profil() {
             </div>
             <div>
               <div className="rounded-circle overflow-hidden shadow" style={{ width: 46, height: 46, boxShadow: "0 10px 18px rgba(69,157,255,0.35), 0 6px 12px rgba(0,0,0,0.18)" }}>
-                <img src="/31t.jpg" alt="profil" width="46" height="46" style={{ objectFit: "cover" }} />
+                <Image src="/31t.jpg" alt="profil" width={46} height={46} style={{ objectFit: "cover" }} />
               </div>
             </div>
           </div>
@@ -204,16 +206,16 @@ export default function Profil() {
           {/* Links section */}
           <div className="px-3 pt-3" style={{ color: "#9ca3af", fontSize: 12 }}>Liens utiles</div>
           <div className="p-2">
-            <a href="/profil" className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
+            <Link href="/profil" className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
               <i className="bi bi-person-circle" style={{ color: "#9ca3af", fontSize: 18 }}></i>
               <span className="flex-grow-1 text-dark">Compte</span>
               <i className="bi bi-chevron-right" style={{ color: "#9ca3af" }}></i>
-            </a>
-            <a href="/" onClick={logout} className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
+            </Link>
+            <Link href="/" onClick={logout} className="d-flex align-items-center py-2 px-2 text-decoration-none rounded-3" style={{ gap: 12 }}>
               <i className="bi bi-bar-chart" style={{ color: "#9ca3af", fontSize: 18 }}></i>
               <span className="flex-grow-1 text-dark">Se déconnecter</span>
               <i className="bi bi-chevron-right" style={{ color: "#9ca3af" }}></i>
-            </a>
+            </Link>
           </div>
 
           <div className="mt-auto p-2" />

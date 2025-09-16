@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { apiFetch } from "./lib/api";
 
 export default function Home() {
@@ -50,34 +52,45 @@ export default function Home() {
   return (
     <main>
       {/* Top navigation image */}
-      <img
-        src="/nav.png"
-        alt="Navigation"
-        style={{ width: "100%", display: "block", marginBottom: 0 }}
-      />
+      <div style={{ width: "100%", position: "relative" }}>
+        <Image
+          src="/nav.png"
+          alt="Navigation"
+          width={1920}
+          height={200}
+          priority
+          style={{ width: "100%", height: "auto", display: "block", marginBottom: 0 }}
+        />
+      </div>
 
       {/* Carousel */}
       <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner" style={{ paddingTop: 10, paddingBottom: 10 }}>
           <div className="carousel-item active">
-            <img
+            <Image
               src="/1.jpg"
               alt="Slide 1"
-              style={{ display: "block", width: "100%", maxWidth: 500, margin: "0 auto" }}
+              width={1000}
+              height={600}
+              style={{ display: "block", width: "100%", height: "auto", maxWidth: 500, margin: "0 auto" }}
             />
           </div>
           <div className="carousel-item">
-            <img
+            <Image
               src="/2.jpg"
               alt="Slide 2"
-              style={{ display: "block", width: "100%", maxWidth: 500, margin: "0 auto" }}
+              width={1000}
+              height={600}
+              style={{ display: "block", width: "100%", height: "auto", maxWidth: 500, margin: "0 auto" }}
             />
           </div>
           <div className="carousel-item">
-            <img
+            <Image
               src="/3.jpg"
               alt="Slide 3"
-              style={{ display: "block", width: "100%", maxWidth: 500, margin: "0 auto" }}
+              width={1000}
+              height={600}
+              style={{ display: "block", width: "100%", height: "auto", maxWidth: 500, margin: "0 auto" }}
             />
           </div>
         </div>
@@ -141,7 +154,7 @@ export default function Home() {
               <div className="text-center mt-2" style={{ fontSize: 14 }}>
                 Si vous n’avez pas de compte, veuillez
                 {" "}
-                <a href="/inscription" className="link-primary">cliquer ici</a>
+                <Link href="/inscription" className="link-primary">cliquer ici</Link>
                 {" "}
                 pour créer votre compte.
               </div>
@@ -151,7 +164,9 @@ export default function Home() {
       </div>
 
       {/* Footer image */}
-      <img src="/f.png" alt="Footer" style={{ width: "100%", display: "block", marginTop: 50 }} />
+      <div style={{ width: "100%", position: "relative", marginTop: 50 }}>
+        <Image src="/f.png" alt="Footer" width={1920} height={240} style={{ width: "100%", height: "auto", display: "block" }} />
+      </div>
     </main>
   );
 }
